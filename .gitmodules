@@ -1,0 +1,6 @@
+[submodule "TempTake-Manager"]
+	path = TempTake-Manager
+	url = https://github.com/muffindud/TempTake-Manager
+[submodule "TempTake-Worker"]
+	path = TempTake-Worker
+	url = https://github.com/muffindud/TempTake-Worker
