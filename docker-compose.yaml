@@ -1,0 +1,15 @@
+services:
+  mosquitto:
+    image: eclipse-mosquitto:1.6
+    ports:
+      - "$MQTT_BROKER_PORT:$MQTT_BROKER_PORT"
+    volumes:
+      - ./mosquitto.conf:/mosquitto/config/mosquitto.conf
+
+  mqtt-handler:
+    build: ./TempTake-MQTT
+    depends_on:
+      - mosquitto
+    environment:
+      - MQTT_BROKER_HOST=mosquitto
+      - MQTT_BROKER_PORT=$MQTT_BROKER_PORT

@@ -4,3 +4,6 @@
 [submodule "TempTake-Worker"]
 	path = TempTake-Worker
 	url = https://github.com/muffindud/TempTake-Worker
+[submodule "TempTake-MQTT"]
+	path = TempTake-MQTT
+	url = https://github.com/muffindud/TempTake-MQTT
