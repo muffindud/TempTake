@@ -6,10 +6,37 @@ services:
     volumes:
       - ./mosquitto.conf:/mosquitto/config/mosquitto.conf
 
+  db:
+    image: postgres:13
+    user: ${DB_USER}
+    ports:
+      - "$DB_PORT:$DB_PORT"
+    volumes:
+      - ./db-data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=${DB_NAME}
+
   mqtt-handler:
     build: ./TempTake-MQTT
+    deploy:
+      replicas: 2
     depends_on:
       - mosquitto
     environment:
       - MQTT_BROKER_HOST=mosquitto
       - MQTT_BROKER_PORT=$MQTT_BROKER_PORT
+
+  server:
+    build: ./TempTake-Server
+    ports:
+      - "$SERVER_PORT:$SERVER_PORT"
+    depends_on:
+      - db
+    environment:
+      - DB_HOST=db
+      - DB_PORT=$DB_PORT
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_NAME=${DB_NAME}

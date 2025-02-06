@@ -7,3 +7,6 @@
 [submodule "TempTake-MQTT"]
 	path = TempTake-MQTT
 	url = https://github.com/muffindud/TempTake-MQTT
+[submodule "TempTake-Server"]
+	path = TempTake-Server
+	url = https://github.com/muffindud/TempTake-Server
