@@ -38,7 +38,10 @@ services:
     deploy:
       replicas: 2
     depends_on:
-      - mosquitto
+      db:
+        condition: service_healthy
+      mosquitto:
+        condition: service_started
     environment:
       - MQTT_BROKER_HOST=mosquitto
       - MQTT_BROKER_PORT=$MQTT_BROKER_PORT
