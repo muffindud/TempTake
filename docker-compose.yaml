@@ -1,4 +1,14 @@
 services:
+  duckdns:
+    image: linuxserver/duckdns
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Chisinau
+      - SUBDOMAINS=temptake-mqtt.duckdns.org,temptake-server.duckdns.org
+      - TOKEN=${DUCKDNS_TOKEN}
+    restart: unless-stopped
+
   mosquitto:
     image: eclipse-mosquitto:1.6
     ports:
@@ -30,7 +40,7 @@ services:
     depends_on:
       - mosquitto
     environment:
-      - MQTT_BROKER_HOST=mosquitto
+      - MQTT_BROKER_HOST=temptake-mqtt.duckdns.org
       - MQTT_BROKER_PORT=$MQTT_BROKER_PORT
 
   server:
