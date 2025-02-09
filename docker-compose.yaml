@@ -40,8 +40,13 @@ services:
     depends_on:
       - mosquitto
     environment:
-      - MQTT_BROKER_HOST=temptake-mqtt.duckdns.org
+      - MQTT_BROKER_HOST=mosquitto
       - MQTT_BROKER_PORT=$MQTT_BROKER_PORT
+      - DB_HOST=db
+      - DB_PORT=$DB_PORT
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_NAME=${DB_NAME}
 
   server:
     build: ./TempTake-Server
