@@ -17,7 +17,7 @@ services:
       - ./mosquitto.conf:/mosquitto/config/mosquitto.conf
 
   db:
-    image: postgres:13
+    image: postgres:17
     user: ${DB_USER}
     ports:
       - "$DB_PORT:$DB_PORT"
