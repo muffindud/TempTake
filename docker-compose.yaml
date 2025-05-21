@@ -36,7 +36,7 @@ services:
   mqtt-handler:
     build: ./TempTake-MQTT
     deploy:
-      replicas: 2
+      replicas: 1
     depends_on:
       db:
         condition: service_healthy
@@ -64,6 +64,17 @@ services:
       - DB_USER=${DB_USER}
       - DB_PASSWORD=${DB_PASSWORD}
       - DB_NAME=${DB_NAME}
+      - INTERNAL_SECRET=${INTERNAL_SECRET}
+
+  telegram:
+    build: ./TempTake-Telegram
+    depends_on:
+      server:
+        condition: service_started
+    environment:
+      - SERVER_HOST=server
+      - SERVER_PORT=${SERVER_PORT}
+      - INTERNAL_SECRET=${INTERNAL_SECRET}
 
 volumes:
   db-data:

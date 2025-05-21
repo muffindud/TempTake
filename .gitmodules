@@ -10,3 +10,6 @@
 [submodule "TempTake-Server"]
 	path = TempTake-Server
 	url = https://github.com/muffindud/TempTake-Server
+[submodule "TempTake-Telegram"]
+	path = TempTake-Telegram
+	url = https://github.com/muffindud/TempTake-Telegram
