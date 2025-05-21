@@ -74,6 +74,7 @@ services:
     environment:
       - SERVER_HOST=server
       - SERVER_PORT=${SERVER_PORT}
+      - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}
       - INTERNAL_SECRET=${INTERNAL_SECRET}
 
 volumes:
