@@ -15,6 +15,7 @@ services:
       - "$MQTT_BROKER_PORT:$MQTT_BROKER_PORT"
     volumes:
       - ./mosquitto.conf:/mosquitto/config/mosquitto.conf
+    restart: unless-stopped
 
   db:
     image: postgres:17
@@ -32,6 +33,7 @@ services:
       interval: 5s
       timeout: 5s
       retries: 5
+    restart: unless-stopped
 
   mqtt-handler:
     build: ./TempTake-MQTT
@@ -50,6 +52,7 @@ services:
       - DB_USER=${DB_USER}
       - DB_PASSWORD=${DB_PASSWORD}
       - DB_NAME=${DB_NAME}
+    restart: unless-stopped
 
   server:
     build: ./TempTake-Server
@@ -65,6 +68,7 @@ services:
       - DB_PASSWORD=${DB_PASSWORD}
       - DB_NAME=${DB_NAME}
       - INTERNAL_SECRET=${INTERNAL_SECRET}
+    restart: unless-stopped
 
   telegram:
     build: ./TempTake-Telegram
@@ -76,6 +80,7 @@ services:
       - SERVER_PORT=${SERVER_PORT}
       - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}
       - INTERNAL_SECRET=${INTERNAL_SECRET}
+    restart: unless-stopped
 
 volumes:
   db-data:
